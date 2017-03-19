@@ -32,39 +32,38 @@ class LoginPage
     @browser.div(:id => 'flash_alert').text == 'Invalid email or password.'
   end
 
+  def login_success?
+    @browser.div(:id => 'flash_notice').text == 'Signed in successfully.'
+  end
+
+  def test_result_evaluate(condition:, method:)
+    if condition
+      puts "#{@browser_type}: #{method} is PASSED"
+    else
+      puts "#{@browser_type}: #{method} is FAILED"
+    end
+  end
+
   public
 
   def login_navigation_test
     login_navigation
     @browser.form(:id => "new_user").wait_until_present(timeout: 1)
-    if @browser.form(:id => "new_user").exists? && @browser.url.include?("sign_in")
-      puts "Login navigation test PASSED"
-    else
-      puts "Login navigation test FAILED"
-    end
+    # Another possible condition @browser.url.include?("sign_in")
+    test_result_evaluate(condition: @browser.form(:id => "new_user").exists?, method: __method__)
   end
 
   def correct_credentials_test
     login_navigation
     login_with_credentials(login: @correct_email, password: @correct_pass)
-    if @browser.url == "http://demoapp.strongqa.com/" && @browser.div(:id => 'flash_notice')
-                                                             .text == 'Signed in successfully.'
-      puts 'Correct credentials test PASSED'
-    else
-      puts 'Correct credentials test FAILED'
-    end
+    test_result_evaluate(condition: login_success?,method: __method__)
     @browser.cookies.clear
   end
 
   def login_remembering_test
     login_navigation
     login_with_credentials(true,login: @correct_email, password: @correct_pass)
-    if @browser.url == "http://demoapp.strongqa.com/" && @browser.div(:id => 'flash_notice')
-                                                             .text == 'Signed in successfully.'
-      puts 'Correct credentials test PASSED'
-    else
-      puts 'Correct credentials test FAILED'
-    end
+    test_result_evaluate(condition: login_success?, method: __method__)
     @browser.cookies.clear
   end
 
@@ -79,11 +78,7 @@ class LoginPage
     @browser.cookies.load(file_with_cookies)
     login_navigation
     sleep(0.5)
-    if @browser.li(:text => "Login").exists?
-      puts 'Login remembering reopen browser test FAILED'
-    else
-      puts 'Login remembering reopen browser test PASSED'
-    end
+    test_result_evaluate(condition: @browser.a(:text => "Logout").exists?, method: __method__)
     @browser.cookies.clear
   end
 
@@ -91,77 +86,52 @@ class LoginPage
     login_navigation
     login_with_credentials(login: @correct_email, password: @correct_pass)
     @browser.a(:text => 'Logout').click
-    browser_type = @browser.name
-    sleep(10)
     @browser.close
-    @browser = Watir::Browser.new browser_type
+    @browser = Watir::Browser.new @browser_type
     @browser.goto("http://demoapp.strongqa.com/")
+    test_result_evaluate(condition: @browser.li(:text => "Login").exists?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_blank_pass_test
     login_navigation
     login_with_credentials(login: @correct_email, password: '')
-    if login_fail?
-      puts 'Blank password PASSED'
-    else
-      puts 'Blank password FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_blank_mail_test
     login_navigation
     login_with_credentials(login: '', password: @correct_pass)
-    if login_fail?
-      puts 'Blank mail PASSED'
-    else
-      puts 'Blank mail FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_blank_fields_test
     login_navigation
     login_with_credentials(login: '', password: '')
-    if login_fail?
-      puts 'Blank fields PASSED'
-    else
-      puts 'Blank fields FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_incorrect_mail_test
     login_navigation
     login_with_credentials(login: @incorrect_email, password: @correct_pass)
-    if login_fail?
-      puts 'Incorrect mail PASSED'
-    else
-      puts 'Incorrect mail FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_incorrect_pass_test
     login_navigation
     login_with_credentials(login: @correct_email, password: @incorrect_pass)
-    if login_fail?
-      puts 'Incorrect pass PASSED'
-    else
-      puts 'Incorrect pass FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 
   def login_incorrect_data_test
     login_navigation
     login_with_credentials(login: @incorrect_email, password: @incorrect_pass)
-    if login_fail?
-      puts 'Incorrect data PASSED'
-    else
-      puts 'Incorrect data FAILED'
-    end
+    test_result_evaluate(condition: login_fail?, method: __method__)
     @browser.cookies.clear
   end
 

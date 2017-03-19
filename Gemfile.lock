@@ -19,6 +19,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  selenium-webdriver
   watir
   watir-webdriver
 
