@@ -53,7 +53,8 @@ class LoginPage
     login_navigation
     @browser.form(id: 'new_user').wait_until_present(timeout: 1)
     # Another possible condition @browser.url.include?("sign_in")
-    test_result_evaluate(condition: @browser.form(id: 'new_user').exists?, method: __method__)
+    test_result_evaluate(condition: @browser.form(id: 'new_user').exists?,
+                         method: __method__)
   end
 
   def correct_credentials_test
@@ -81,7 +82,8 @@ class LoginPage
     @browser.cookies.load(file_with_cookies)
     login_navigation
     @browser.a(text: 'Logout').wait_until_present(timeout: 1)
-    test_result_evaluate(condition: @browser.a(text: 'Logout').exists?, method: __method__)
+    test_result_evaluate(condition: @browser.a(text: 'Logout').exists?,
+                         method: __method__)
     reset_cookies
   end
 
@@ -92,7 +94,8 @@ class LoginPage
     close_page
     @browser = Watir::Browser.new @browser_type
     @browser.goto('http://demoapp.strongqa.com/')
-    test_result_evaluate(condition: @browser.li(text: 'Login').exists?, method: __method__)
+    test_result_evaluate(condition: @browser.li(text: 'Login').exists?,
+                         method: __method__)
     reset_cookies
   end
 

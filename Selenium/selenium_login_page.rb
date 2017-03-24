@@ -1,5 +1,6 @@
 require_relative '../WatiR/login_page'
 require 'selenium-webdriver'
+
 class SeleniumLoginPage < LoginPage
   def initialize(browser:)
     @browser = browser
@@ -38,10 +39,6 @@ class SeleniumLoginPage < LoginPage
     @browser.manage.delete_all_cookies
   end
 
-  def test_result_evaluate(condition:, method:)
-    super
-  end
-
   public
 
   def login_blank_fields_test
@@ -52,7 +49,9 @@ class SeleniumLoginPage < LoginPage
     super
   end
 
-  def login_blank_pass_test; end
+  def login_blank_pass_test
+    super
+  end
 
   def correct_credentials_test
     super
