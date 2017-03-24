@@ -1,0 +1,21 @@
+
+Metrics/LineLength:
+  Max: 90
+
+Metrics/ClassLength:
+  Max: 125
+
+Metrics/AbcSize:
+  Max: 19
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'Capybara/capybara_login_page.rb'
+    - 'Selenium/selenium_login_page.rb'
+    - 'Utils/test_utils.rb'
+    - 'WatiR/login_page.rb'
