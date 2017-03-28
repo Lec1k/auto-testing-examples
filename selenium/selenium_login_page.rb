@@ -1,4 +1,4 @@
-require_relative '../WatiR/login_page'
+require_relative '../watir/login_page'
 require 'selenium-webdriver'
 
 class SeleniumLoginPage < LoginPage

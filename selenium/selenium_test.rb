@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 require_relative 'selenium_login_page'
-require_relative '../Utils/test_utils'
+require_relative '../utils/test_utils'
 [:chrome, :ff].each do |browser|
   b = Selenium::WebDriver.for browser
   login_page = SeleniumLoginPage.new(browser: b)

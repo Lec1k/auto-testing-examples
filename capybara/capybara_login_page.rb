@@ -1,4 +1,4 @@
-require_relative '../WatiR/login_page'
+require_relative '../watir/login_page'
 require 'capybara'
 require 'capybara/dsl'
 

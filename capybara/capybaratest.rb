@@ -1,7 +1,7 @@
 require 'capybara'
 require 'capybara/dsl'
 require_relative 'capybara_login_page'
-require_relative '../Utils/test_utils'
+require_relative '../utils/test_utils'
 
 # Capybara.register_driver :ie do |app|
 #   Capybara::Selenium::Driver.new(app, browser: :remote,
