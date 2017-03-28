@@ -1,6 +1,5 @@
-require_relative '../WatiR/login_page'
-require 'capybara'
-require 'capybara/dsl'
+Bundler.require(:test)
+require_relative '../watir/login_page'
 
 class CapybaraLoginPage < LoginPage
   include Capybara::DSL

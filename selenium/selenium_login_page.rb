@@ -1,5 +1,5 @@
-require_relative '../WatiR/login_page'
-require 'selenium-webdriver'
+Bundler.require(:test)
+require_relative '../watir/login_page'
 
 class SeleniumLoginPage < LoginPage
   def initialize(browser:)
