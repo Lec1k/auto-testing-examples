@@ -1,5 +1,4 @@
-require 'capybara'
-require 'capybara/dsl'
+Bundler.require(:test)
 require_relative 'capybara_login_page'
 require_relative '../utils/test_utils'
 
@@ -13,7 +12,7 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-[:selenium, :chrome].each do |driver|
+%i(selenium chrome).each do |driver|
   Capybara.current_driver = driver
   Capybara.app_host = 'http://demoapp.strongqa.com/'
   login_page = CapybaraLoginPage.new

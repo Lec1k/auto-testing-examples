@@ -1,7 +1,7 @@
-require 'selenium-webdriver'
+Bundler.require(:test)
 require_relative 'selenium_login_page'
 require_relative '../utils/test_utils'
-[:chrome, :ff].each do |browser|
+%i(chrome ff).each do |browser|
   b = Selenium::WebDriver.for browser
   login_page = SeleniumLoginPage.new(browser: b)
   TestRun.run_test(page: login_page)
