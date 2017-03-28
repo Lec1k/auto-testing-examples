@@ -1,4 +1,4 @@
-require 'watir'
+Bundler.require(:test)
 require_relative 'login_page'
 require_relative '../utils/test_utils'
 [:chrome, :ff].each do |browser|

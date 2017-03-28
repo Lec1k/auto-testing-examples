@@ -2,7 +2,10 @@
 source 'https://rubygems.org'
 
 gem 'rubocop'
-gem 'capybara'
-gem 'selenium-webdriver'
-gem 'watir'
-gem 'watir-webdriver'
+
+
+group :test do
+  gem 'capybara', :require => 'capybara/dsl'
+  gem 'selenium-webdriver'
+  gem 'watir'
+end

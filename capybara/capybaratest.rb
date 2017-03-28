@@ -1,5 +1,4 @@
-require 'capybara'
-require 'capybara/dsl'
+Bundler.require(:test)
 require_relative 'capybara_login_page'
 require_relative '../utils/test_utils'
 

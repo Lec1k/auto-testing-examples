@@ -1,4 +1,4 @@
-require 'selenium-webdriver'
+Bundler.require(:test)
 require_relative 'selenium_login_page'
 require_relative '../utils/test_utils'
 [:chrome, :ff].each do |browser|
