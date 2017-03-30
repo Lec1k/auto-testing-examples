@@ -1,7 +1,7 @@
 Bundler.require(:test)
 require_relative 'capybara_login_page'
 require_relative '../utils/test_utils'
-require_relative 'app_tests'
+require_relative 'app_test'
 
 # Capybara.register_driver :ie do |app|
 #   Capybara::Selenium::Driver.new(app, browser: :remote,
@@ -22,5 +22,4 @@ end
 
 Capybara.current_driver = :chrome
 Capybara.app_host = 'http://demoapp.strongqa.com/'
-AppTests.new.test_app
-sleep(10)
+TestRun.run_test(AppTest.new)

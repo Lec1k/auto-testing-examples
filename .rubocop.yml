@@ -15,7 +15,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'Capybara/capybara_login_page.rb'
-    - 'Selenium/selenium_login_page.rb'
-    - 'Utils/test_utils.rb'
-    - 'WatiR/login_page.rb'
+    - 'capybara/*'
+    - 'selenium/selenium_login_page.rb'
+    - 'utils/test_utils.rb'
+    - 'watir/login_page.rb'
