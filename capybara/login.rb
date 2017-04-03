@@ -9,12 +9,17 @@ class Login < SitePrism::Page
 
   set_url '/users/sign_in'
 
+  def initialize
+    super
+    load
+  end
+
   def log_in(email, password, *remember)
     AppLogger.log.debug("Action: Login with email:#{email}, password: #{password},"\
-                       "remember me: #{!remember.empty?}")
+                       "remember me: #{remember.first}")
     email_field.set(email)
     password_field.set(password)
-    remember_me.click unless remember.empty?
+    remember_me.click if remember.first
     click_on('Log in')
     has_flash_alert? ? self : Home.new
   end
