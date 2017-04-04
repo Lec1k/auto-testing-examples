@@ -16,6 +16,4 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'capybara/*'
-    - 'selenium/selenium_login_page.rb'
     - 'utils/test_utils.rb'
-    - 'watir/login_page.rb'

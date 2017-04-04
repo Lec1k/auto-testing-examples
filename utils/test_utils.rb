@@ -9,21 +9,10 @@ module TestRun
       rescue Selenium::WebDriver::Error => e
         AppLogger.log.error(e)
       rescue => e
-        AppLogger.log.error(e.message + e.backtrace)
+        AppLogger.log.error(e)
       ensure
         Capybara.reset_sessions!
       end
     end
-  end
-
-  def self.watir_run_test(page:)
-    page.public_methods(false).each do |method|
-      begin
-        page.send(method) if method.to_s.include? 'test'
-      rescue Watir::Wait::TimeoutError => e
-        puts "#{page.browser.name}: #{method} FAILED: #{e.message}"
-      end
-    end
-    page.close_page
   end
 end

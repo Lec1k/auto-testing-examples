@@ -1,5 +1,4 @@
 Bundler.require(:test)
-require_relative 'capybara_login_page'
 require_relative '../utils/test_utils'
 require_relative 'app_test'
 
