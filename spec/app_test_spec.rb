@@ -7,7 +7,6 @@ INCORRECT_EMAIL = 'test@test.com'.freeze
 INCORRECT_PASS = 'qwertqwer'.freeze
 
 RSpec.shared_examples 'successful_login' do |email, pass, remember_me|
-  after(:each) { Capybara.reset_sessions! }
   let(:login_page) { Login.new }
   it 'successfully logins with correct credentials' do
     expect(login_page.log_in(email, pass, remember_me).user_logged_in?)
@@ -15,8 +14,6 @@ RSpec.shared_examples 'successful_login' do |email, pass, remember_me|
 end
 
 RSpec.shared_examples 'failed_login' do |email, pass, remember_me|
-  after(:each) { Capybara.reset_sessions! }
-
   let(:login_page) { Login.new }
   it 'fails to login with incorrect credentials' do
     login_page.log_in(email, pass, remember_me)
@@ -31,9 +28,16 @@ RSpec.describe Home do
       expect(Home.new.navigate_to_login_page).to be_a(Login)
     end
   end
+  describe '#logout' do
+    it 'logs out user' do
+      home = Login.new.log_in(CORRECT_EMAIL,CORRECT_PASS)
+      expect(home.user_logged_in?)
+    end
+  end
 end
 
 RSpec.describe Login do
+  after(:each) { Capybara.reset_sessions! }
   include_examples 'successful_login', CORRECT_EMAIL, CORRECT_PASS, false
   include_examples 'successful_login', CORRECT_EMAIL, CORRECT_PASS, true
   include_examples 'failed_login', CORRECT_EMAIL, INCORRECT_PASS, false
