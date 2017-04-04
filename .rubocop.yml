@@ -11,9 +11,3 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 15
 
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'capybara/*'
-    - 'utils/test_utils.rb'

@@ -1,4 +1,5 @@
 require_relative('app_logger')
+# Module contains methods for running tests
 module TestRun
   def self.run_test(test)
     test.public_methods(false).each do |method|

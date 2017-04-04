@@ -22,3 +22,4 @@ end
 Capybara.current_driver = :chrome
 Capybara.app_host = 'http://demoapp.strongqa.com/'
 TestRun.run_test(AppTest.new)
+# AppTest.new.logout_test
