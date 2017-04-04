@@ -1,5 +1,6 @@
 require 'logger'
 
+# Logger class
 class AppLogger
   def self.log
     if @logger.nil?
