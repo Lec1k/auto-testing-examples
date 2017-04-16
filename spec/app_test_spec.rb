@@ -12,7 +12,7 @@ RSpec.shared_examples 'successful_login' do |email, pass, remember_me|
   it 'successfully logins with correct credentials' do
     Home.new.navigate_to_login_page
     login_page.log_in(email, pass, remember_me)
-    expect(Web.user_logged_in?)
+    expect(Web).to be_user_logged_in
   end
 end
 
@@ -21,12 +21,11 @@ RSpec.shared_examples 'failed_login' do |email, pass, remember_me|
   it 'fails to login with incorrect credentials' do
     Home.new.navigate_to_login_page
     login_page.log_in(email, pass, remember_me)
-    expect(Web.login_failed?)
+    expect(Web).to be_login_failed
   end
 end
 
 RSpec.describe Home do
-  after(:each) { Capybara.reset_sessions! }
   describe '#navigate_to_login_page' do
     it 'allows navigation to login page' do
       Home.new.navigate_to_login_page
@@ -37,13 +36,12 @@ RSpec.describe Home do
     it 'logs out user' do
       Home.new.navigate_to_login_page
       Login.new.log_in(CORRECT_EMAIL, CORRECT_PASS)
-      expect(Web.user_logged_in?)
+      expect(Web).to be_user_logged_in
     end
   end
 end
 
 RSpec.describe Login do
-  after(:each) { Capybara.reset_sessions! }
   include_examples 'successful_login', CORRECT_EMAIL, CORRECT_PASS, false
   include_examples 'successful_login', CORRECT_EMAIL, CORRECT_PASS, true
   include_examples 'failed_login', CORRECT_EMAIL, INCORRECT_PASS, false

@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rubocop'
 
 group :test do
-  gem 'capybara', require: 'capybara/dsl'
+  gem 'capybara', require: 'capybara/rspec'
   gem 'rspec'
   gem 'selenium-webdriver'
   gem 'site_prism'
