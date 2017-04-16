@@ -6,24 +6,24 @@ module LoginSteps
     Home.new.navigate_to_login_page
   end
 
-  step 'I login with :email as an email and :password as a password with :checked remember me' do |email, password, checked|
-    if checked == 'checked'
-      Login.new.log_in(email, password, true)
-    else
-      Login.new.log_in(email, password)
-    end
+  step 'I login with :email as an email and :password as a password with checked remember me' do |email, password|
+    Login.new.log_in(email, password, true)
+  end
+
+  step 'I login with :email as an email and :password as a password with unchecked remember me' do |email, password|
+    Login.new.log_in(email, password)
   end
 
   step 'I login with correct credentials' do
     Login.new.log_in(CORRECT_EMAIL, CORRECT_PASS)
   end
 
-  step 'Log in should be :state' do |state|
-    if state == 'succeeded'
-      expect(Web.user_logged_in?).to be_truthy
-    else
-      expect(Web.login_failed?).to be_truthy
-    end
+  step 'Log in should be succeeded' do
+    expect(Web).to be_user_logged_in
+  end
+
+  step 'Log in should be failed' do
+    expect(Web).to be_login_failed
   end
 end
 

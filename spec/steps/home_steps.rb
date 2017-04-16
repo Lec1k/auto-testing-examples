@@ -16,7 +16,7 @@ module HomeSteps
   end
 
   step 'I should be logged out' do
-    expect(Web.user_logged_in?).to be_falsey
+    expect(Web).not_to be_user_logged_in
   end
 end
 
