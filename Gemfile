@@ -6,8 +6,8 @@ gem 'rubocop'
 
 group :test do
   gem 'capybara', require: 'capybara/dsl'
-  gem 'rspec'
+  gem 'cucumber'
+  gem 'rspec-expectations'
   gem 'selenium-webdriver'
   gem 'site_prism'
-  gem 'turnip'
 end
