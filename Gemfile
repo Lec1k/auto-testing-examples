@@ -10,4 +10,5 @@ group :test do
   gem 'rspec-expectations'
   gem 'selenium-webdriver'
   gem 'site_prism'
+  gem 'rake'
 end
