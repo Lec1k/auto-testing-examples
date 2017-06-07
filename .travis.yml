@@ -5,7 +5,6 @@ addons:
   chrome: stable
 
 before_install:
-  - ruby-install --binary -M https://rubies.travis-ci.org/ ruby 2.1.1
   - gem install bundler
   - bundle config build.nokogiri --use-system-libraries
 

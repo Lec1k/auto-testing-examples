@@ -1,0 +1,10 @@
+dependencies:
+  override:
+    - bundle install:
+        timeout: 300
+machine:
+  ruby:
+    version: 2.4.0
+test:
+  post:
+    - rake features
