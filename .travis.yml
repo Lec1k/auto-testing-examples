@@ -1,0 +1,13 @@
+language: ruby
+dist: trusty
+sudo: required
+addons:
+  chrome: stable
+
+before_install:
+  - gem install bundler
+
+script: bundle exec rake features
+
+rvm:
+  - 2.4.0
