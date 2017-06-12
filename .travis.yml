@@ -6,9 +6,8 @@ addons:
 
 before_install:
   - gem install bundler
-  - bundle config build.nokogiri --use-system-libraries
 
-script: rake features
+script: bundle exec rake features
 
 rvm:
   - 2.4.0
